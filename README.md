@@ -8,16 +8,20 @@ Sometimes embedded devices have very high requirements to traffic cost. And we c
 
 Device connected to proxy and sent a binary message with payload "HELLO, WORLD":
  Original message (14 bytes)    Send to backend (base64("HELLO, WORLD")-> "SEVMTE8sIFdPUkxE")
+ ```
  +--------+----------------+      +------------------+
  | Length | Actual Content |----->| POST /target/    |
  | 0x000C | "HELLO, WORLD" |      |"SEVMTE8sIFdPUkxE"|
  +--------+----------------+      +------------------+
+ ```
  
 Backend returned "SGVsbG8="("Hello"), proxy decoded content and returned to device binary message:
+ ```
  +--------+----------------+      +------------------+
  | Length | Actual Content |<-----| POST /target/    |
  | 0x0005 |    "Hello"     |      |    "SGVsbG8="    |
  +--------+----------------+      +------------------+
+ ```
 
 ## How to build
 
